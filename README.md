@@ -1,4 +1,4 @@
-Sistema de Financiamento de Pesquisas
+# Sistema de Financiamento de Pesquisas
 Uma agência de financiamento de projetos de pesquisa deseja criar um sistema de banco de dados para gerenciar seu funcionamento. Para cada projeto são cadastrados: um código interno, título, duração do projeto, instituição onde será realizado e área de pesquisa. 
 As áreas de pesquisa estão predefinidas é para cada uma delas são cadastrados código, nome, descrição e um índice que indica sua relevância econômica. Para cada pesquisador solicitante são cadastrados: RG, CPF, nome, sexo, data de nascimento, grau científico e instituição onde foi alcançado esse título. 
 Note-se que um mesmo pesquisador pode ter vários projetos em análise. Um pesquisador é cadastrado no sistema unicamente quando o primeiro dos seus projetos é submetido.
