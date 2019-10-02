@@ -1,0 +1,70 @@
+	Uma agência de financiamento de projetos de pesquisa deseja criar um sistema de banco de dados para gerenciar seu funcionamento. Para cada projeto são cadastrados: um código interno, título, duração do projeto, instituição onde será realizado e área de pesquisa. 
+	
+	As áreas de pesquisa estão predefinidas é para cada uma delas são cadastrados código, nome, descrição e um índice que indica sua relevância econômica. Para cada pesquisador solicitante são cadastrados: RG, CPF, nome, sexo, data de nascimento, grau científico e instituição onde foi alcançado esse título. 
+Note-se que um mesmo pesquisador pode ter vários projetos em análise. Um pesquisador é cadastrado no sistema unicamente quando o primeiro dos seus projetos é submetido.
+
+	A agência recebe os projetos submetidos pelos pesquisadores e associa cada um destes a um assessor que deve aprovar ou não o financiamento. Para estes assessores são cadastrados: RG, CPF, nome, sexo, data de nascimento, grau científico, instituição onde trabalha e as áreas nas quais tem capacidade de avaliar projetos. Estas áreas de pesquisa devem ser definidas dentre a lista de áreas predefinidas antes mencionadas.
+
+	Um assessor pode ser cadastrado mesmo sem ter analisado nenhum projeto. 
+	Quando um projeto é enviado a um assessor para análise, é cadastrada a data deste envio.
+	Posteriormente, quando o assessor retorna sua avaliação são também cadastrados a data de resposta e o resultado de aprovação ou não do projeto.
+
+Entidades
+- pesquisador
+- assessor
+- projeto
+- área de pesquisa
+
+
+Requisitos funcionais
+- CRUD entidades
+- 
+
+Requisitos Não-Funcionais
+- 
+- 
+
+
+
+---===  Requisitos Funcionais:  ===---
+
+- Buscas por projetos devem ser feitas através de uma chave única; (desejável)
+
+- O sistema permite o pesquisador acompanhar o andamento de análise de seus projetos (o que pode ser por meio da busca); (desejável)
+
+- Realizar cadastro de pesquisadores, assessores, administradores do sistema, pesquisas e áreas de pesquisas; (importante)
+
+- O sistema deve realizar associação de projetos a assessores específicos, de acordo com sua área de atuação; (essencial) --1------
+
+- Permitir que ao assessor analise projetos a ele associado, assim como, indicar a aprovação ou desaprovação; (essencial)
+
+- O sistema fará a alocação dos projetos á assessores de maneira aleatória; (importantes)
+
+- Sistemas de autenticação simplificados; (importante)
+
+- Registrar e exibir datas de: 
+	envio ao assessor; (importante )
+	resposta do assessor; (importante )
+	e o resultado de aprovação, ou não, de um projeto; (importante )
+
+
+---===  Requisitos Não-Funcionais:  ===---
+
+- Cada área dá acesso as suas devidas funcionalidades:
+	- Área do pesquisador:
+		Auto cadastro dentro do sistema;
+		Cadastro de projetos;
+		Consulta a projetos cadastrados;
+	- Área do assessor:
+		Auto cadastro dentro do sistema;
+		Avaliação de projetos;
+
+- Um pesquisador pode cadastrar mais de um projeto para avaliação; (importante)
+
+- Mais de um projeto pode ser alocado a um mesmo assessor; (importante)
+
+- Os projetos são alocados para os assessores em suas respectivas áreas nas quais o assessor alocado tenha conhecimento; (essencial)
+
+- Um mesmo assessor pode ser alocado para vários projetos; (importante)
+
+- Permitir solicitação de projetos apenas se a área de pesquisa deste estiver disponível; (importante)
