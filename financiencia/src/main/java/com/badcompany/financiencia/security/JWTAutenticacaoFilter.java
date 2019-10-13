@@ -1,4 +1,4 @@
-package com.badcompany.financiencia.jwt;
+package com.badcompany.financiencia.security;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.badcompany.financiencia.jwt;
+package com.badcompany.financiencia.security;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -15,12 +15,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.badcompany.financiencia.security.Usuario;
+import com.badcompany.financiencia.model.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
-	public JWTLoginFilter(String url, AuthenticationManager authManager) {
+	protected JWTLoginFilter(String url, AuthenticationManager authManager) {
 		super(new AntPathRequestMatcher(url));
 		setAuthenticationManager(authManager);
 	}
