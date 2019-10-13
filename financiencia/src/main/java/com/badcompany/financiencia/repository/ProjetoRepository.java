@@ -1,8 +1,5 @@
 package com.badcompany.financiencia.repository;
 
-import org.springframework.stereotype.Repository;
+public interface ProjetoRepository {
 
-@Repository
-public class ProjetoRepository{
-	
 }

@@ -1,6 +1,8 @@
 package com.badcompany.financiencia.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.sun.istack.NotNull;
@@ -9,6 +11,7 @@ import com.sun.istack.NotNull;
 public class Projeto {
 	@Id
 	@NotNull
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String codInterno;
 	private String titulo;
 	private int duracao;
