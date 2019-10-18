@@ -1,2 +1,0 @@
-INSERT INTO roles (nome)VALUES('ACESSOR');
-INSERT INTO roles (nome)VALUES('PESQUISADOR');
