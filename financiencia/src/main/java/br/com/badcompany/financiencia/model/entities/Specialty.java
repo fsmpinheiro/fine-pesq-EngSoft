@@ -1,12 +1,12 @@
-package br.com.badcompany.financiencia.model;
+package br.com.badcompany.financiencia.model.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import br.com.badcompany.financiencia.model.AbstractEntity;
 
 @Entity
-public class Specialty {
-	@Id
-	private Long id;
+public class Specialty extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 	private int code;
 	private String name;
 	private String description;

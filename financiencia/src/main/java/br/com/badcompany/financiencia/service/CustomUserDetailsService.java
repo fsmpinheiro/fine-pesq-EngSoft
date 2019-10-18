@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.badcompany.financiencia.model.AbstractDomainPerson;
-import br.com.badcompany.financiencia.model.Accessor;
-import br.com.badcompany.financiencia.model.Researcher;
 import br.com.badcompany.financiencia.model.Role;
+import br.com.badcompany.financiencia.model.entities.Accessor;
+import br.com.badcompany.financiencia.model.entities.Researcher;
 import br.com.badcompany.financiencia.repository.AccessorRepository;
 import br.com.badcompany.financiencia.repository.ResearcherRepository;
 

@@ -1,9 +1,11 @@
-package br.com.badcompany.financiencia.model;
+package br.com.badcompany.financiencia.model.entities;
 
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
+import br.com.badcompany.financiencia.model.AbstractDomainPerson;
 
 @Entity
 public class Researcher extends AbstractDomainPerson {

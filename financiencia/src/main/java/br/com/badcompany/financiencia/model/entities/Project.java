@@ -1,8 +1,10 @@
-package br.com.badcompany.financiencia.model;
+package br.com.badcompany.financiencia.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
+import br.com.badcompany.financiencia.model.AbstractEntity;
 
 @Entity
 public class Project extends AbstractEntity {

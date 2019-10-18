@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.badcompany.financiencia.model.Researcher;
+import br.com.badcompany.financiencia.model.entities.Researcher;
 import br.com.badcompany.financiencia.service.ResearcherService;
 
 @RestController

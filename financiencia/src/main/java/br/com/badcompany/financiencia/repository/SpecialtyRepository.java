@@ -3,8 +3,9 @@ package br.com.badcompany.financiencia.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.badcompany.financiencia.model.entities.Project;
+import br.com.badcompany.financiencia.model.entities.Specialty;
 
 @Repository
-public interface ProjectRepository extends JpaRepository<Project, Long>{
+public interface SpecialtyRepository extends JpaRepository<Specialty, Long>{
+
 }

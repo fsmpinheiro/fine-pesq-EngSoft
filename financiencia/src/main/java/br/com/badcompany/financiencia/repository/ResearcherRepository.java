@@ -5,7 +5,7 @@ package br.com.badcompany.financiencia.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.badcompany.financiencia.model.Researcher;
+import br.com.badcompany.financiencia.model.entities.Researcher;
 
 @Repository
 public interface ResearcherRepository extends JpaRepository<Researcher, Long> {

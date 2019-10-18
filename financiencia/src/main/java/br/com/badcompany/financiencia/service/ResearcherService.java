@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.badcompany.financiencia.model.Researcher;
+import br.com.badcompany.financiencia.model.entities.Researcher;
 import br.com.badcompany.financiencia.repository.ResearcherRepository;
 
 @Service

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.badcompany.financiencia.model.Accessor;
+import br.com.badcompany.financiencia.model.entities.Accessor;
 import br.com.badcompany.financiencia.service.AccessorService;
 
 @RestController
@@ -26,9 +26,8 @@ public class AccessorController {
 		return new ResponseEntity<>(a, HttpStatus.OK);
 	}
 	
-	@GetMapping("/projects")
+	@GetMapping("/projects/{id}")
 	public ResponseEntity<?> getProjectsToEvaluate(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(aServ.projectsToEvaluate(id), HttpStatus.OK); 
 	}
-	
 }

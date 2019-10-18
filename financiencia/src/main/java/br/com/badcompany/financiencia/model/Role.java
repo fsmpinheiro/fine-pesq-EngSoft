@@ -11,6 +11,9 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import br.com.badcompany.financiencia.model.entities.Accessor;
+import br.com.badcompany.financiencia.model.entities.Researcher;
+
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {

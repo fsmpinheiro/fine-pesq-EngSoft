@@ -50,8 +50,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests()
 			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.antMatchers(HttpMethod.GET, "/v1/index/free").permitAll()
-			.antMatchers(HttpMethod.POST, "/v1/researcher/register").permitAll()
+			.antMatchers(HttpMethod.GET, "/v1/index/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/v1/specialty/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/v1/**/register").permitAll()
 			.anyRequest().authenticated().and()
 			
 						// filtra requisições de login
