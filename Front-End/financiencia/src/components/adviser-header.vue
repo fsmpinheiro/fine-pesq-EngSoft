@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <nav class="top-header">
-            <div id="wellcome"><p>Bem Vindo ao Portal do Assessor</p></div>
+            <div id="wellcome"><p>Financiência - Bem Vindo ao Portal do Assessor</p></div>
             <div id="link"><router-link to="researcherhome">Portal do Pesquisador</router-link></div>
         </nav>
     </div>
