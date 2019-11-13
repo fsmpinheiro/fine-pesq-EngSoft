@@ -10,18 +10,18 @@ import br.com.badcompany.financiencia.model.AbstractEntity;
 public class Project extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	@NotNull
-	private int internalCode;
+	private String internalCode;
 	private String title;
 	private int duration;
 	private String instituteWhereRealized;
 	@OneToOne
 	private Specialty specialty;
 
-	public int getInternalCode() {
+	public String getInternalCode() {
 		return internalCode;
 	}
 
-	public void setInternalCode(int internalCode) {
+	public void setInternalCode(String internalCode) {
 		this.internalCode = internalCode;
 	}
 

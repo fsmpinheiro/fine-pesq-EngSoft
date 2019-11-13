@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 import br.com.badcompany.financiencia.model.AbstractDomainPerson;
 
@@ -12,6 +13,7 @@ public class Researcher extends AbstractDomainPerson {
 	private static final long serialVersionUID = 1L;
 	private String instituteGraduated;
 	@OneToMany
+	@NotEmpty
 	private List<Project> projectsSubmited;
 
 	public String getInstituteGraduated() {

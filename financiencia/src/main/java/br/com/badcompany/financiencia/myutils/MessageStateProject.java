@@ -2,12 +2,12 @@ package br.com.badcompany.financiencia.myutils;
 
 public class MessageStateProject {
 	private String stateOfProject;
-	private String dateOfEvaluate;
+	private String dateOfSubmited;
 
-	public MessageStateProject(String stateOfProject, String dateOfEvaluate) {
+	public MessageStateProject(String stateOfProject, String dateOfSubmited) {
 		super();
 		this.stateOfProject = stateOfProject;
-		this.dateOfEvaluate = dateOfEvaluate;
+		this.dateOfSubmited = dateOfSubmited;
 	}
 
 	public String getStateOfProject() {
@@ -18,11 +18,11 @@ public class MessageStateProject {
 		this.stateOfProject = stateOfProject;
 	}
 
-	public String getDateOfEvaluate() {
-		return dateOfEvaluate;
+	public String getdateOfSubmited() {
+		return dateOfSubmited;
 	}
 
-	public void setDateOfEvaluate(String dateOfEvaluate) {
-		this.dateOfEvaluate = dateOfEvaluate;
+	public void setdateOfSubmited(String dateOfSubmited) {
+		this.dateOfSubmited = dateOfSubmited;
 	}
 }

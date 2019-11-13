@@ -8,6 +8,7 @@ import br.com.badcompany.financiencia.model.enums.Eval;
 
 @Entity
 public class DateProjectEval extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 	@OneToOne
 	private Project project;
 	private String valuationDate;

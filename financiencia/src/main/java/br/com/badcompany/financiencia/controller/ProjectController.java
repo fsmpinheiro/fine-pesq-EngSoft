@@ -1,7 +1,5 @@
 package br.com.badcompany.financiencia.controller;
 
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.badcompany.financiencia.exception.GenericException;
 import br.com.badcompany.financiencia.model.entities.Project;
+import br.com.badcompany.financiencia.myutils.Errors;
 import br.com.badcompany.financiencia.myutils.MessageJson;
 import br.com.badcompany.financiencia.service.ProjectService;
 
@@ -26,8 +25,9 @@ public class ProjectController {
 
 	@PostMapping("/submit")
 	public ResponseEntity<?> submitANewProject(@RequestBody Project p) {
-		pServ.addProject(p);
-		return new ResponseEntity<>(p, HttpStatus.OK);
+		if (pServ.addProject(p))
+			return new ResponseEntity<>(p, HttpStatus.CREATED);
+		return new ResponseEntity<>(new MessageJson("Something wrong happened"), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@GetMapping("/evaluate")
@@ -36,7 +36,11 @@ public class ProjectController {
 			@RequestParam("approved") boolean result) {
 		try {			
 			pServ.evalProject(id, result);
-			return new ResponseEntity<>(HttpStatus.OK);
+			String situation = "disapproved";
+			if (result)
+				situation = "approved";
+			
+			return new ResponseEntity<>(new MessageJson("Project " + situation), HttpStatus.OK);
 		} catch(GenericException e) {
 			return new ResponseEntity<>(new MessageJson(e.getMessage()), HttpStatus.NOT_FOUND); 
 		}
@@ -49,15 +53,23 @@ public class ProjectController {
 	
 	@GetMapping("/state/{id}")
 	public ResponseEntity<?> getStateOfAProject(@PathVariable("id") Long id) {
-		try {
+		if (this.pServ.validateProject(id).isEmpty())
 			return new ResponseEntity<> (pServ.stateOf(id), HttpStatus.OK);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<> (new MessageJson("Project not found"), HttpStatus.NOT_FOUND);
-		}
+		
+		return new ResponseEntity<> (new Errors(this.pServ.validateProject(id)), HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping("/search/{id}")
 	public ResponseEntity<?> searchProject(@PathVariable("id") Long id) {
-		return new ResponseEntity<>(pServ.getOneProject(id), HttpStatus.OK);
+		if (pServ.isProjectExists(id))
+			return new ResponseEntity<>(pServ.getOneProject(id), HttpStatus.FOUND);
+		return new ResponseEntity<>(new MessageJson("Project not found"), HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/search/code/{internalCode}")
+	public ResponseEntity<?> searchProjectByInternalCode(@PathVariable("internalCode") String internalCode) {
+		if (!internalCode.isEmpty())
+			return new ResponseEntity<>(pServ.getProjectByIntenalCode(internalCode), HttpStatus.FOUND);
+		return new ResponseEntity<>(new MessageJson("Project not found"), HttpStatus.NOT_FOUND);
 	}
 }

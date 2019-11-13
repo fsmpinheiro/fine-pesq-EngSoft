@@ -20,6 +20,7 @@ public class ResearcherController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> registerResearcher(@RequestBody Researcher r) {
+//		if (r.getProjectsSubmited().size() == 0)
 		rServ.addResearcher(r);
 		return new ResponseEntity<> (r, HttpStatus.OK);
 	}

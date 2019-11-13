@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.badcompany.financiencia.model.entities.Accessor;
+import br.com.badcompany.financiencia.myutils.MessageJson;
 import br.com.badcompany.financiencia.service.AccessorService;
 
 @RestController
@@ -22,12 +23,18 @@ public class AccessorController {
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerAccessor(@RequestBody Accessor a) {
+		if(aServ.addAccessor(a) == null) {
+			return new ResponseEntity<>(new MessageJson("Accessor already exists"), HttpStatus.BAD_REQUEST);
+		}
 		aServ.addAccessor(a);
-		return new ResponseEntity<>(a, HttpStatus.OK);
+		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/projects/{id}")
-	public ResponseEntity<?> getProjectsToEvaluate(@PathVariable("id") Long id) {
-		return new ResponseEntity<>(aServ.projectsToEvaluate(id), HttpStatus.OK); 
+	@GetMapping("/{idAccessor}/projects")
+	public ResponseEntity<?> getProjectsToEvaluate(@PathVariable("idAccessor") Long id) {
+		if(aServ.accessorExistsById(id)) {			
+			return new ResponseEntity<>(aServ.projectsToEvaluate(id), HttpStatus.OK); 
+		}
+		return new ResponseEntity<>(new MessageJson("Accessor not found"), HttpStatus.NOT_FOUND);
 	}
 }
