@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -20,13 +21,13 @@ import br.com.badcompany.financiencia.service.CustomUserDetailsService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-	
+
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	        auth.userDetailsService(customUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 
 //	@Bean
@@ -46,22 +47,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		httpSecurity
 			.csrf().disable()
-			.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-			.authorizeRequests()
-			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.antMatchers(HttpMethod.GET, "/v1/index/**").permitAll()
-			.antMatchers(HttpMethod.GET, "/v1/specialty/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/v1/**/register").permitAll()
-			.anyRequest().authenticated().and()
-			
-						// filtra requisições de login
-						.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
-				                UsernamePasswordAuthenticationFilter.class)
-						
-						// filtra outras requisições para verificar a presença do JWT no header
-						.addFilterBefore(new JWTAuthenticationFilter(),
-				                UsernamePasswordAuthenticationFilter.class);
+				.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.authorizeRequests()
+				.antMatchers(HttpMethod.POST, "/login").permitAll().antMatchers(HttpMethod.GET, "/v1/index/**")
+				.permitAll().antMatchers(HttpMethod.GET, "/v1/specialty/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/v1/**/register").permitAll()
+				.anyRequest().authenticated().and()
 
+				// filtra requisições de login
+				.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
+						UsernamePasswordAuthenticationFilter.class)
+
+				// filtra outras requisições para verificar a presença do JWT no header
+				.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+	}
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+				"/configuration/security", "/swagger-ui.html", "/webjars/**");
 	}
 }

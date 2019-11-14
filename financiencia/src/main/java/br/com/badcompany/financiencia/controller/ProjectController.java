@@ -16,13 +16,17 @@ import br.com.badcompany.financiencia.model.entities.Project;
 import br.com.badcompany.financiencia.myutils.Errors;
 import br.com.badcompany.financiencia.myutils.MessageJson;
 import br.com.badcompany.financiencia.service.ProjectService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value="Endpoint de projetos")
 @RestController
 @RequestMapping("/v1/project")
 public class ProjectController {
 	@Autowired
 	private ProjectService pServ;
-
+	
+	@ApiOperation(value="Cadastro de um projeto")
 	@PostMapping("/submit")
 	public ResponseEntity<?> submitANewProject(@RequestBody Project p) {
 		if (pServ.addProject(p))
@@ -30,6 +34,7 @@ public class ProjectController {
 		return new ResponseEntity<>(new MessageJson("Something wrong happened"), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	@ApiOperation(value="Avaliação de um projeto")
 	@GetMapping("/evaluate")
 //	@PreAuthorize("hasRole('ACCESSOR')
 	public ResponseEntity<?> approvedProject(@RequestParam("id") Long id, 
@@ -46,11 +51,13 @@ public class ProjectController {
 		}
 	}
 	
+	@ApiOperation(value="Listagem de todos os projetos")
 	@GetMapping("/list")
 	public ResponseEntity<?> getAllProjects() {
 		return new ResponseEntity<> (this.pServ.projectsList(), HttpStatus.OK);
 	}
 	
+	@ApiOperation(value="Consulta do estado de um projeto (aprovado, desaprovado ou em análise)")
 	@GetMapping("/state/{id}")
 	public ResponseEntity<?> getStateOfAProject(@PathVariable("id") Long id) {
 		if (this.pServ.validateProject(id).isEmpty())
@@ -59,6 +66,7 @@ public class ProjectController {
 		return new ResponseEntity<> (new Errors(this.pServ.validateProject(id)), HttpStatus.NOT_FOUND);
 	}
 	
+	@ApiOperation(value="Busca por id de um projeto")
 	@GetMapping("/search/{id}")
 	public ResponseEntity<?> searchProject(@PathVariable("id") Long id) {
 		if (pServ.isProjectExists(id))
@@ -66,6 +74,7 @@ public class ProjectController {
 		return new ResponseEntity<>(new MessageJson("Project not found"), HttpStatus.NOT_FOUND);
 	}
 	
+	@ApiOperation(value="Busca por código de um projeto")
 	@GetMapping("/search/code/{internalCode}")
 	public ResponseEntity<?> searchProjectByInternalCode(@PathVariable("internalCode") String internalCode) {
 		if (!internalCode.isEmpty())

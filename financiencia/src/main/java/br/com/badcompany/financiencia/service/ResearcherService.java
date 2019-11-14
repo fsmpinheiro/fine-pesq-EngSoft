@@ -13,8 +13,16 @@ public class ResearcherService {
 	@Autowired
 	private ResearcherRepository rRepo;
 	
-	public void addResearcher(Researcher r) {
-		r.setPassword(new BCryptPasswordEncoder().encode(r.getPassword()));
-		this.rRepo.save(r);
+	@Autowired
+	private ProjectService pServ;
+	
+	public boolean addResearcher(Researcher r) {
+		if (r.getProjectsSubmited() != null) {
+			pServ.addProject(r.getProjectsSubmited().get(0));
+			r.setPassword(new BCryptPasswordEncoder().encode(r.getPassword()));
+			this.rRepo.save(r);
+			return true;
+		}
+		return false;
 	}
 }

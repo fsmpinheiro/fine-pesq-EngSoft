@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.badcompany.financiencia.model.entities.Accessor;
 import br.com.badcompany.financiencia.myutils.MessageJson;
 import br.com.badcompany.financiencia.service.AccessorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value="Endpoint de acessor")
 @RestController
 @RequestMapping("/v1/accessor")
 public class AccessorController {
 
 	@Autowired
 	private AccessorService aServ;
-
+	
+	@ApiOperation(value="Cadastro de acessor")
 	@PostMapping("/register")
 	public ResponseEntity<?> registerAccessor(@RequestBody Accessor a) {
 		if(aServ.addAccessor(a) == null) {
@@ -30,6 +34,7 @@ public class AccessorController {
 		return new ResponseEntity<>(a, HttpStatus.CREATED);
 	}
 	
+	@ApiOperation(value="Lista de projetos para o acessor avaliar ")
 	@GetMapping("/{idAccessor}/projects")
 	public ResponseEntity<?> getProjectsToEvaluate(@PathVariable("idAccessor") Long id) {
 		if(aServ.accessorExistsById(id)) {			
