@@ -16,7 +16,7 @@ export default {
 <style scoped>
 .top-header{
     height: 70px;
-    background-color: #9b59b6;
+    background-color: #ff9100;
     display: flex;
 }
 .top-header #wellcome{

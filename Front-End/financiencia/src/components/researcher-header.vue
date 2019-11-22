@@ -19,7 +19,7 @@ export default {
 
 .top-header{
     height: 70px;
-    background-color: #2ecc71;
+    background-color: #ff9100;
     display: flex;
 }
 .top-header #wellcome{
@@ -28,7 +28,7 @@ export default {
 }
 .top-header #wellcome p{
     padding-left: 32px;
-    text-shadow: 2px 2px 2px #1c8045;
+    text-shadow: 2px 2px 2px #693c7a;
 }
 .top-header #link{
     width: 30%;

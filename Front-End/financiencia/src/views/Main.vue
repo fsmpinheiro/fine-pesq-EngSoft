@@ -3,6 +3,7 @@
     <div class="main">
       <HeaderResearcher />
       <BodyResearcher />
+      <NeutralFooter />
     </div>
   </div>
 </template>
@@ -10,12 +11,14 @@
 <script>
 import HeaderResearcher from '../components/researcher-header.vue'
 import BodyResearcher from '../components/researcher-body.vue'
+import NeutralFooter from '../components/neutral-footer.vue'
 
 export default {
   name: 'Main',
   components: {
     HeaderResearcher,
-    BodyResearcher
+    BodyResearcher,
+    NeutralFooter
     
   }
 }

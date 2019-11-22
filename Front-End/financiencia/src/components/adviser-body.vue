@@ -3,7 +3,7 @@
         <div class="body">
             <div class="celula">
                 <div class="link">
-                    <a href="#"><p>Cadastrar-se como Assessor no Financiência</p></a>
+                    <router-link to="register"><p>Cadastrar-se como Assessor no Financiência</p></router-link>
                 </div>
             </div>
             <div class="celula">
@@ -22,12 +22,14 @@ export default {
 </script>
 
 <style scoped>
+.body{
+    display: flex;
+}
 .celula{
     width: 46%;
     min-height: 320px;
-    background-color: blue;
+    background-color: #5252d8;
     margin: 25px 25px;
-    float: left;
     border-radius: 10px;
 }
 

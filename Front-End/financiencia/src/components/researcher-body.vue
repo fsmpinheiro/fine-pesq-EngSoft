@@ -3,7 +3,7 @@
         <div class="body">
             <div class="celula">
                 <div class="link">
-                <a href="#"><p>Cadastrar-se como Pesquisador no Financiência</p></a>
+                <router-link to="register"><p>Cadastrar-se como Pesquisador no Financiência</p></router-link>
                 </div>
             </div>
             <div class="celula">
@@ -23,12 +23,14 @@ export default {
 </script>
 
 <style scoped>
+.body{
+    display: flex;
+}
 .celula{
     width: 46%;
     min-height: 320px;
-    background-color: #a52a2a;
+    background-color: #d67070;
     margin: 25px 25px;
-    float: left;
     border-radius: 10px;
 }
 
